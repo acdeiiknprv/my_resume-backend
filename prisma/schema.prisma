@@ -17,7 +17,7 @@ model Job {
   jobCityLocation    String
   jobCountryLocation String
   jobCompany         String
-  jobStartDate       DateTime
-  jobEndDate         DateTime
+  jobStartDate       String
+  jobEndDate         String
   jobKeywords        String
 }
