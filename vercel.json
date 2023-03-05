@@ -8,6 +8,7 @@
     ],
     "headers": [
         {
+            "cleanUrls": true,
             "source": "/jobs",
             "headers": [
                 {
