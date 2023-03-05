@@ -1,4 +1,16 @@
 {
+    "builds": [
+        {
+            "src": "src/main.ts",
+            "use": "@vercel/node"
+        }
+    ],
+    "rewrites": [
+        {
+            "source": "/(.*)",
+            "destination": "src/main.js"
+        }
+    ],
     "headers": [
       {
         "source": "/(.*)",
