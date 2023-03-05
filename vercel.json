@@ -6,9 +6,9 @@
             "use": "@vercel/node"
         }
     ],
+    "cleanUrls": true,
     "headers": [
         {
-            "cleanUrls": true,
             "source": "/jobs",
             "headers": [
                 {
