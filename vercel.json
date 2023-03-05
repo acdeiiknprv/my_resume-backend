@@ -6,10 +6,9 @@
             "use": "@vercel/node"
         }
     ],
-    "cleanUrls": true,
     "headers": [
         {
-            "source": "/jobs",
+            "source": "/(.*)",
             "headers": [
                 {
                     "key": "Access-Control-Allow-Credentials",
