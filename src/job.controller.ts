@@ -12,7 +12,8 @@ export class JobsController {
   }
 
   @Get(':id')
-  async findOne(@Param('id') id: number): Promise<Job> {
-    return this.jobsService.findOne(id);
+  async findOne(@Param('id') id: string): Promise<Job> {
+    const idNumber = parseInt(id);
+    return this.jobsService.findOne(idNumber);
   }
 }
