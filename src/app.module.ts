@@ -1,24 +1,13 @@
 import { Module } from '@nestjs/common';
-import { TypeOrmModule } from '@nestjs/typeorm';
-import { Job } from './job.entity';
-import { JobController } from './job.controller';
-import { JobService } from './job.service';
+import { AppController } from './app.controller';
+import { AppService } from './app.service';
+import { JobsController } from './job.controller';
+import { JobsService } from './job.service';
+import { PrismaService } from './prisma/prisma.service';
 
 @Module({
-  imports: [
-    TypeOrmModule.forRoot({
-      type: 'postgres',
-      host: process.env.DB_HOST,
-      port: 5432,
-      username: process.env.DB_USER,
-      password: process.env.DB_PASS,
-      database: process.env.DB_DATABASE,
-      entities: [Job],
-      synchronize: true,
-    }),
-    TypeOrmModule.forFeature([Job]),
-  ],
-  controllers: [JobController],
-  providers: [JobService],
+  imports: [],
+  controllers: [AppController, JobsController],
+  providers: [AppService, JobsService, PrismaService],
 })
 export class AppModule {}

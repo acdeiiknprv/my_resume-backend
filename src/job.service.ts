@@ -1,33 +1,29 @@
 import { Injectable } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
-import { Job } from './job.entity';
+import { PrismaService } from 'src/prisma/prisma.service';
+import { Job } from '.prisma/client';
+
 
 @Injectable()
-export class JobService {
-  constructor(
-    @InjectRepository(Job)
-    private readonly jobRepository: Repository<Job>,
-  ) {}
-
-  async findAll(): Promise<Job[]> {
-    return this.jobRepository.find();
-  }
+export class JobsService {
+  constructor(private readonly prisma: PrismaService) {}
 
   async findOne(id: number): Promise<Job> {
-    return this.jobRepository.findOne({ where: { id } });
+    return this.prisma.job.findUnique({ where: { id } });
   }
-
+  
+  async findAll(): Promise<Job[]> {
+    return this.prisma.job.findMany();
+  }
+  
   async create(job: Job): Promise<Job> {
-    return this.jobRepository.save(job);
+    return this.prisma.job.create({ data: job });
   }
-
+  
   async update(id: number, job: Job): Promise<Job> {
-    await this.jobRepository.update(id, job);
-    return this.jobRepository.findOne({ where: { id } });
+    return this.prisma.job.update({ where: { id }, data: job });
   }
-
-  async delete(id: number): Promise<void> {
-    await this.jobRepository.delete(id);
+  
+  async remove(id: number): Promise<void> {
+    await this.prisma.job.delete({ where: { id } });
   }
 }
