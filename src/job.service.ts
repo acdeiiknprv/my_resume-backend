@@ -12,7 +12,11 @@ export class JobsService {
   }
   
   async findAll(): Promise<Job[]> {
-    return this.prisma.job.findMany();
+    return this.prisma.job.findMany({
+      orderBy: {
+        id: 'asc',
+      },
+    });
   }
   
   async create(job: Job): Promise<Job> {
